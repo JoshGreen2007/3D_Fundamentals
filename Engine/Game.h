@@ -48,7 +48,7 @@ private:
 	static constexpr float vRot = PI / 60.0f;
 	static constexpr float radInner = 1.0f;
 	static constexpr float radOuter = 2.0f;
-	static constexpr int nflares = 5;
+	static constexpr int nflares = 10;
 	static constexpr float size = 100.0f;
 	/********************************/
 };
