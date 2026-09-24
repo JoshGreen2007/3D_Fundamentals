@@ -86,6 +86,7 @@ private:
 	D3D11_MAPPED_SUBRESOURCE							mappedSysBufferTexture;
 	Surface												sysBuffer;
 public:
+	// Make the screen square so we don't have a distortion
 	static constexpr unsigned int ScreenWidth = 640u;
 	static constexpr unsigned int ScreenHeight = 640u;
 };
