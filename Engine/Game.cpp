@@ -41,16 +41,21 @@ void Game::UpdateModel()
 {
 }
 
+// Renders 3D objects in 2D space
 void Game::ComposeFrame()
 {
+	// Initalise cube vertices and indices
+	// This effectively defines how lines connect
 	auto lines = cube.GetLines();
+
 	for( auto& v : lines.vertices )
 	{
+		// Transform the vertex into 2D
 		pst.Transform( v );
 	}
 	for( auto i = lines.indices.cbegin(),
 		end = lines.indices.cend();
-		i != end; std::advance( i,2 ) )
+		i != end; std::advance( i,2 ) ) // Iterate through every 2 indices (every line) (e.g 0,1, 1,2 etc)
 	{
 		gfx.DrawLine( lines.vertices[*i],lines.vertices[*std::next( i )],Colors::White );
 	}
