@@ -394,15 +394,18 @@ void Graphics::DrawTriangle( const Vec2& v0,const Vec2& v1,const Vec2& v2,Color 
 	if( pv2->y < pv1->y ) std::swap( pv1,pv2 );
 	if( pv1->y < pv0->y ) std::swap( pv0,pv1 );
 
+	// If both vertices have same y posiiton, this is a flat top triangle
 	if( pv0->y == pv1->y ) // natural flat top
 	{
 		// sorting top vertices by x
+		// We effectively swap x positions so the 0th vertex is on the left
 		if( pv1->x < pv0->x ) std::swap( pv0,pv1 );
 		DrawFlatTopTriangle( *pv0,*pv1,*pv2,c );
 	}
 	else if( pv1->y == pv2->y ) // natural flat bottom
 	{
 		// sorting bottom vertices by x
+		// Swap x positions again
 		if( pv2->x < pv1->x ) std::swap( pv1,pv2 );
 		DrawFlatBottomTriangle( *pv0,*pv1,*pv2,c );
 	}
@@ -414,6 +417,8 @@ void Graphics::DrawTriangle( const Vec2& v0,const Vec2& v1,const Vec2& v2,Color 
 			(pv2->y - pv0->y);
 		const Vec2 vi = *pv0 + (*pv2 - *pv0) * alphaSplit;
 
+		// We pass in different vertices (where vi split is)
+		// depending on the placement of the splitting vertex
 		if( pv1->x < vi.x ) // major right
 		{
 			DrawFlatBottomTriangle( *pv0,*pv1,vi,c );
@@ -427,6 +432,9 @@ void Graphics::DrawTriangle( const Vec2& v0,const Vec2& v1,const Vec2& v2,Color 
 	}
 }
 
+// We seperate triangles due to horizontal edges changing which vertices triangles connect to
+
+// This triangle has 2 top vertices with the same y position
 void Graphics::DrawFlatTopTriangle( const Vec2& v0,const Vec2& v1,const Vec2& v2,Color c )
 {
 	// calulcate slopes in screen space
@@ -455,6 +463,7 @@ void Graphics::DrawFlatTopTriangle( const Vec2& v0,const Vec2& v1,const Vec2& v2
 	}
 }
 
+// This triangle has 2 bottom vertices with the same y position
 void Graphics::DrawFlatBottomTriangle( const Vec2& v0,const Vec2& v1,const Vec2& v2,Color c )
 {
 	// calulcate slopes in screen space
