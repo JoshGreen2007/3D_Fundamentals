@@ -77,6 +77,7 @@ void Game::ComposeFrame()
 		 Mat3::RotationY( theta_y ) *
 		 Mat3::RotationZ( theta_z )) 
 		:
+		// This is to prove that rotation order matters!
 		(Mat3::RotationY( theta_y ) *
 		 Mat3::RotationZ( theta_z ) *
 		 Mat3::RotationX( theta_x ));
