@@ -105,6 +105,8 @@ void Game::ComposeFrame()
 		v += { 0.0f,0.0f,offset_z };
 	}
 	// backface culling test (must be done in world (/view) space)
+	// backface culling is where we stop non-visible screen elements from being rendered
+
 	for( size_t i = 0,
 		 end = triangles.indices.size() / 3;
 		 i < end; i++ )
@@ -112,6 +114,10 @@ void Game::ComposeFrame()
 		const Vec3& v0 = triangles.vertices[triangles.indices[i * 3]];
 		const Vec3& v1 = triangles.vertices[triangles.indices[i * 3 + 1]];
 		const Vec3& v2 = triangles.vertices[triangles.indices[i * 3 + 2]];
+		// We get the vertices vectors and multiply by the dot product
+		// This produces a vector perpendicular to the triangle
+		// We then multiply by the dot produt
+		// i.e |(v1 - v0) x (v2 - v0)| * v0
 		triangles.cullFlags[i] = (v1 - v0) % (v2 - v0) * v0 > 0.0f;
 	}
 	// transform to screen space (includes perspective transform)
