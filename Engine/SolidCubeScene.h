@@ -5,6 +5,7 @@
 #include "PubeScreenTransformer.h"
 #include "Mat3.h"
 
+// Inherits from Scene to get standard game loops
 class SolidCubeScene : public Scene
 {
 public:
