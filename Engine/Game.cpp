@@ -28,6 +28,7 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
+	// Pushes the scenes into scene manager and renders them
 	scenes.push_back( std::make_unique<SolidCubeScene>() );
 	scenes.push_back( std::make_unique<CubeOrderScene>() );
 	curScene = scenes.begin();
