@@ -26,6 +26,8 @@
 #include <string>
 #include <array>
 #include <functional>
+#include <cmath>
+#include <math.h>
 
 // Ignore the intellisense error "cannot open source file" for .shh files.
 // They will be created during the build sequence before the preprocessor runs.
@@ -706,9 +708,9 @@ void Graphics::DrawFlatTriangleTexWrap( const TexVertex& v0,const TexVertex& v1,
 
 		for( int x = xStart; x < xEnd; x++,itcLine += dtcLine )
 		{
-			PutPixel( x,y,tex.GetPixel(
-				int( std::fmod( itcLine.x * tex_width,tex_clamp_x ) ),
-				int( std::fmod( itcLine.y * tex_height,tex_clamp_y ) ) ) );
+            PutPixel( x,y,tex.GetPixel(
+				int( fmod( itcLine.x * tex_width,tex_clamp_x ) ),
+				int( fmod( itcLine.y * tex_height,tex_clamp_y ) ) ) );
 			// need std::min b/c tc.x/y == 1.0, we'll read off edge of tex
 			// and with fp err, tc.x/y can be > 1.0 (by a tiny amount)
 		}

@@ -1,7 +1,10 @@
 #pragma once
+#pragma once
 
 #include "Vec3.h"
+#include "Vec2.h"
 #include <vector>
+#include <stdexcept>
 #include "IndexedLineList.h"
 #include "IndexedTriangleList.h"
 #include "TexVertex.h"
